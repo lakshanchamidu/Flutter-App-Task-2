@@ -20,7 +20,7 @@ class MoodCards extends StatelessWidget {
           Container(
             width: 307,
             height: 192,
-            decoration: BoxDecoration(color: Colors.transparent),
+            decoration: BoxDecoration(color: const Color.fromARGB(0, 255, 0, 0)),
             child: Column(
               children: [
                 Expanded(

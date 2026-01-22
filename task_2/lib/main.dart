@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_2/data/constant.dart';
-import 'package:task_2/views/pages/home_page.dart';
+import 'package:task_2/views/pages/welcome_page.dart';
 
 
 void main() => runApp(const MyApp());
@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       color:RColors.bgColor,
-      home: HomePage(),
+      home: WelcomePage(),
     );
   }
 }

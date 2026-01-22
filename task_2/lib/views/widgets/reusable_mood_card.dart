@@ -25,7 +25,7 @@ class ReusableMoodCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 259,
+            width: 269,
             height: 56,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -71,6 +71,7 @@ class ReusableMoodCard extends StatelessWidget {
             ),
           ),
           SizedBox(width: 5),
+          
           Container(
             width: 43,
             height: 56,
