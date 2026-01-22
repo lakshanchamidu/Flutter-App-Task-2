@@ -14,12 +14,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int? _pressedIndex;
 
-  final List<String> _labels = [
-    "Home",
-    "Search",
-    "Calenda",
-    "Profile",
-  ];
+  final List<String> _labels = ["Home", "Search", "Calenda", "Profile"];
 
   static const double navWidth = 200;
   static const double expandedNavWidth = 260;
@@ -50,67 +45,68 @@ class _NavBarState extends State<NavBar> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(_icons.length, (i) {
-          final bool active = widget.selectedIndex == i;
-          final bool pressed = _pressedIndex == i;
+            final bool active = widget.selectedIndex == i;
+            final bool pressed = _pressedIndex == i;
 
-          return GestureDetector(
-            onTapDown: (_) => setState(() => _pressedIndex = i),
-            onTapUp: (_) => setState(() => _pressedIndex = null),
-            onTapCancel: () => setState(() => _pressedIndex = null),
-            onTap: () => widget.onTap?.call(i),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeOut,
-              height: 40,
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-              decoration: BoxDecoration(
-                color: active
-                    ? RColors.primaryColor.withOpacity(0.2)
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 150),
-                    width: iconSize,
-                    height: iconSize,
-                    transform:
-                        Matrix4.identity()..scale(pressed ? 0.9 : 1.0),
-                    decoration: BoxDecoration(
-                      color: active ? Colors.transparent : Colors.transparent,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: active ? 0 : 1,
-                        color: active ? Colors.transparent : RColors.borderColor,
-                      ),
-                    ),
-                    child: Icon(
-                      _icons[i],
-                      size: 22,
-                      color: active ? RColors.textColor : RColors.borderColor,
-                    ),
-                  ),
-
-                  if (active)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 6),
-                      child: Text(
-                        _labels[i],
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: RColors.textColor,
+            return GestureDetector(
+              onTapDown: (_) => setState(() => _pressedIndex = i),
+              onTapUp: (_) => setState(() => _pressedIndex = null),
+              onTapCancel: () => setState(() => _pressedIndex = null),
+              onTap: () => widget.onTap?.call(i),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeOut,
+                height: 40,
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                decoration: BoxDecoration(
+                  color: active
+                      ? RColors.primaryColor.withOpacity(0.2)
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 150),
+                      width: iconSize,
+                      height: iconSize,
+                      transform: Matrix4.identity()..scale(pressed ? 0.9 : 1.0),
+                      decoration: BoxDecoration(
+                        color: active ? Colors.transparent : Colors.transparent,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: active ? 0 : 1,
+                          color: active
+                              ? Colors.transparent
+                              : RColors.borderColor,
                         ),
                       ),
+                      child: Icon(
+                        _icons[i],
+                        size: 22,
+                        color: active ? RColors.textColor : RColors.borderColor,
+                      ),
                     ),
-                ],
+
+                    if (active)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6),
+                        child: Text(
+                          _labels[i],
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: RColors.textColor,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
-      ),
+            );
+          }),
+        ),
       ),
     );
   }
