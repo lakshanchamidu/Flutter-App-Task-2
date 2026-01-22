@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_2/data/constant.dart';
+import 'package:task_2/views/pages/select_screen.dart';
 import 'reusable_mood_card.dart';
 
 class Mood2Cards extends StatelessWidget {
@@ -18,7 +19,7 @@ class Mood2Cards extends StatelessWidget {
           ),
           SizedBox(width: 10),
           Container(
-            width: 307,
+            width: 347,
             height: 192,
             decoration: BoxDecoration(color: Colors.transparent),
             child: Column(
@@ -29,6 +30,13 @@ class Mood2Cards extends StatelessWidget {
                     time: "12.30am",
                     gradient: RColors.gradientAfternoon,
                     buttonColor: RColors.afternoonButton,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => PlayScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: 12),
@@ -38,6 +46,13 @@ class Mood2Cards extends StatelessWidget {
                     time: "12.30am",
                     gradient: RColors.gradientAfternoon,
                     buttonColor: RColors.afternoonButton,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => PlayScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: 12),
@@ -47,6 +62,13 @@ class Mood2Cards extends StatelessWidget {
                     time: "12.30pm",
                     gradient: RColors.gradientAfternoon,
                     buttonColor: RColors.afternoonButton,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => PlayScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

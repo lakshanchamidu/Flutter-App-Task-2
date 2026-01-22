@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_2/data/constant.dart';
-import 'package:task_2/views/pages/select_screen.dart';
+import 'package:task_2/views/pages/home_page.dart';
 import 'package:task_2/views/widgets/mood_button.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -121,7 +121,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const PlayScreen(),
+                            builder: (context) => const HomePage(),
                           ),
                         );
                       },

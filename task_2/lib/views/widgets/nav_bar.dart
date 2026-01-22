@@ -22,7 +22,7 @@ class _NavBarState extends State<NavBar> {
   ];
 
   static const double navWidth = 200;
-  static const double expandedNavWidth = 240;
+  static const double expandedNavWidth = 260;
   static const double iconSize = 36;
 
   @override

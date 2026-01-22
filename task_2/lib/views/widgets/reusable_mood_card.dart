@@ -7,6 +7,7 @@ class ReusableMoodCard extends StatelessWidget {
   final String time;
   final LinearGradient gradient;
   final Color buttonColor;
+  final VoidCallback onTap;
 
   const ReusableMoodCard({
     Key? key,
@@ -14,12 +15,13 @@ class ReusableMoodCard extends StatelessWidget {
     required this.time,
     required this.gradient,
     required this.buttonColor,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 307,
+      width: 327,
       height: 56,
       decoration: BoxDecoration(color: Colors.transparent),
       child: Row(
@@ -72,23 +74,26 @@ class ReusableMoodCard extends StatelessWidget {
           ),
           SizedBox(width: 5),
           
-          Container(
-            width: 43,
-            height: 56,
-            decoration: BoxDecoration(
-              color: buttonColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Container(
-                width: 12,
-                height: 16,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: RColors.primaryColor,
-                  borderRadius: BorderRadius.circular(2)
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              width: 43,
+              height: 56,
+              decoration: BoxDecoration(
+                color: buttonColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Container(
+                  width: 12,
+                  height: 16,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: RColors.primaryColor,
+                    borderRadius: BorderRadius.circular(2)
+                  ),
+                  child: Icon(Icons.play_arrow,size: 10, color: buttonColor,),
                 ),
-                child: Icon(Icons.play_arrow,size: 10, color: buttonColor,),
               ),
             ),
           ),
