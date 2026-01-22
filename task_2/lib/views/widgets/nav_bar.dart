@@ -12,57 +12,65 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  int? _pressedIndex;
+  final List<String> _labels = ["Home", "Search", "Calendar", "Profile"];
 
   @override
   Widget build(BuildContext context) {
+    // Default to no selection if selectedIndex is null
+    final int? currentIndex = widget.selectedIndex;
+    
     return Container(
-      width: 200,
       height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
       decoration: BoxDecoration(
-        color: RColors.secondColor,
+        color: const Color(0xFF4A4A4A),
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withOpacity(0.4),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
         children: List.generate(_icons.length, (i) {
-          final int? sel = widget.selectedIndex;
-          final bool active = sel != null && i == sel;
-          final bool pressed = _pressedIndex == i;
+          final bool active = currentIndex == i;
+
           return GestureDetector(
-            onTapDown: (_) => setState(() => _pressedIndex = i),
-            onTapUp: (_) => setState(() => _pressedIndex = null),
-            onTapCancel: () => setState(() => _pressedIndex = null),
             onTap: () => widget.onTap?.call(i),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              width: 36,
-              height: 36,
-              transform: Matrix4.identity()..scale(pressed ? 0.9 : 1.0),
-              decoration: BoxDecoration(
-                color: active 
-                    ? RColors.primaryColor.withOpacity(0.2) 
-                    : pressed 
-                        ? RColors.primaryColor.withOpacity(0.1)
-                        : Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: active ? 2 : 1, 
-                  color: active ? RColors.primaryColor : RColors.borderColor
-                ),
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              margin: const EdgeInsets.symmetric(horizontal: 2),
+              padding: EdgeInsets.symmetric(
+                horizontal: active ? 16 : 12,
+                vertical: 8,
               ),
-              child: Icon(
-                _icons[i],
-                size: 18,
-                color: active ? RColors.primaryColor : RColors.borderColor,
+              decoration: BoxDecoration(
+                color: active ? const Color(0xFFE0E0E0) : Colors.transparent,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    _icons[i],
+                    size: 18,
+                    color: active ? const Color(0xFF2A2A2A) : const Color(0xFFB0B0B0),
+                  ),
+                  if (active) const SizedBox(width: 8),
+                  if (active)
+                    Text(
+                      _labels[i],
+                      style: const TextStyle(
+                        color: Color(0xFF2A2A2A),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                ],
               ),
             ),
           );
@@ -73,8 +81,8 @@ class _NavBarState extends State<NavBar> {
 }
 
 const List<IconData> _icons = [
-  Icons.home_outlined,
-  Icons.search_outlined,
-  Icons.calendar_today_outlined,
-  Icons.person_outline,
+  Icons.home,
+  Icons.search,
+  Icons.calendar_today,
+  Icons.person,
 ];
