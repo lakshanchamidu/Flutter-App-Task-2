@@ -12,62 +12,97 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  final List<String> _labels = ["Home", "Search", "Calendar", "Profile"];
+  int? _pressedIndex;
+
+  final List<String> _labels = [
+    "Home",
+    "Search",
+    "Calenda",
+    "Profile",
+  ];
+
+  static const double navWidth = 200;
+  static const double expandedNavWidth = 240;
+  static const double iconSize = 36;
 
   @override
   Widget build(BuildContext context) {
-    // Default to no selection if selectedIndex is null
-    final int? currentIndex = widget.selectedIndex;
-    
-    return Container(
+    final bool anySelected = widget.selectedIndex != null;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      width: anySelected ? expandedNavWidth : navWidth,
       height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color(0xFF4A4A4A),
+        color: RColors.secondColor,
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
         ],
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: List.generate(_icons.length, (i) {
-          final bool active = currentIndex == i;
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(_icons.length, (i) {
+          final bool active = widget.selectedIndex == i;
+          final bool pressed = _pressedIndex == i;
 
           return GestureDetector(
+            onTapDown: (_) => setState(() => _pressedIndex = i),
+            onTapUp: (_) => setState(() => _pressedIndex = null),
+            onTapCancel: () => setState(() => _pressedIndex = null),
             onTap: () => widget.onTap?.call(i),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              margin: const EdgeInsets.symmetric(horizontal: 2),
-              padding: EdgeInsets.symmetric(
-                horizontal: active ? 16 : 12,
-                vertical: 8,
-              ),
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeOut,
+              height: 40,
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
               decoration: BoxDecoration(
-                color: active ? const Color(0xFFE0E0E0) : Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
+                color: active
+                    ? RColors.primaryColor.withOpacity(0.2)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(18),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    _icons[i],
-                    size: 18,
-                    color: active ? const Color(0xFF2A2A2A) : const Color(0xFFB0B0B0),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 150),
+                    width: iconSize,
+                    height: iconSize,
+                    transform:
+                        Matrix4.identity()..scale(pressed ? 0.9 : 1.0),
+                    decoration: BoxDecoration(
+                      color: active ? Colors.transparent : Colors.transparent,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: active ? 0 : 1,
+                        color: active ? Colors.transparent : RColors.borderColor,
+                      ),
+                    ),
+                    child: Icon(
+                      _icons[i],
+                      size: 22,
+                      color: active ? RColors.textColor : RColors.borderColor,
+                    ),
                   ),
-                  if (active) const SizedBox(width: 8),
+
                   if (active)
-                    Text(
-                      _labels[i],
-                      style: const TextStyle(
-                        color: Color(0xFF2A2A2A),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 6),
+                      child: Text(
+                        _labels[i],
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: RColors.textColor,
+                        ),
                       ),
                     ),
                 ],
@@ -76,13 +111,14 @@ class _NavBarState extends State<NavBar> {
           );
         }),
       ),
+      ),
     );
   }
 }
 
 const List<IconData> _icons = [
-  Icons.home,
-  Icons.search,
-  Icons.calendar_today,
-  Icons.person,
+  Icons.home_outlined,
+  Icons.search_outlined,
+  Icons.calendar_today_outlined,
+  Icons.person_outline,
 ];
