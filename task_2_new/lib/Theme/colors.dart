@@ -10,4 +10,12 @@ class KColors {
   static const Color navbarColor = Color.fromRGBO(101, 98, 98, 1);
   static const Color primaryText = Color.fromRGBO(255, 255, 255, 1);
   static const Color swipeText = Color.fromRGBO(255, 255, 255, 0.5);
+  static const Color navBarBorder = Color.fromRGBO(255, 255, 255, 0.3);
+}
+
+class RColors {
+  static const Color primaryColor = KColors.yellowButton;
+  static const Color secondColor = KColors.navbarColor;
+  static const Color borderColor = KColors.navBarBorder;
+  static const Color textColor = KColors.primaryText;
 }

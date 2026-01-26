@@ -57,13 +57,12 @@ class _HomePageState extends State<HomePage> {
               top: 255,
               child: Row(
                 children: [
-                  Padding(padding: EdgeInsets.only(left: 30),
+                  Padding(
+                    padding: EdgeInsets.only(left: 30),
                     child: Container(
                       width: 2,
                       height: 195,
-                      decoration: BoxDecoration(
-                        color: KColors.navbarColor
-                      ),
+                      decoration: BoxDecoration(color: KColors.navbarColor),
                     ),
                   ),
                   Column(
@@ -105,13 +104,12 @@ class _HomePageState extends State<HomePage> {
               top: 505,
               child: Row(
                 children: [
-                  Padding(padding: EdgeInsets.only(left: 30),
+                  Padding(
+                    padding: EdgeInsets.only(left: 30),
                     child: Container(
                       width: 2,
                       height: 195,
-                      decoration: BoxDecoration(
-                        color: KColors.navbarColor
-                      ),
+                      decoration: BoxDecoration(color: KColors.navbarColor),
                     ),
                   ),
                   Column(
@@ -129,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                         time: "7.32pm",
                         buttonColor: aftrernoonButton,
                         gradientColor1: morningButton,
-                        gradientColor2:aftrernoonButton,
+                        gradientColor2: aftrernoonButton,
                       ),
                       SizedBox(height: 12),
                       MoodCard(
@@ -144,6 +142,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            // Positioned(bottom: 20, left: 106, right: 106, child: NavBar()),
           ],
         ),
       ),
