@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:task_2_new/Theme/colors.dart';
 import 'package:task_2_new/Theme/text_style.dart';
 import 'package:task_2_new/views/widgets/home_container.dart';
+import 'package:task_2_new/views/widgets/nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -142,7 +143,12 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            // Positioned(bottom: 20, left: 106, right: 106, child: NavBar()),
+            Positioned(
+              bottom: 20,
+              left: 84,
+              right: 84,
+              child: NavBar(),
+            ),
           ],
         ),
       ),

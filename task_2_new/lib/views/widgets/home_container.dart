@@ -36,17 +36,31 @@ class MoodCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 5, left: 5, bottom: 5),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(title, style: KTextStyle.alreadyaccText),
-                        Text(time, style: KTextStyle.timeStyle),
+                        SizedBox(height: 4),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Text(
+                              time,
+                              textAlign: TextAlign.left,
+                              style: KTextStyle.timeStyle,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
+                  SizedBox(width: 34,),
                   Padding(
                     padding: const EdgeInsets.only(top: 5, right: 5, bottom: 5),
                     child: Container(
